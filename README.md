@@ -60,7 +60,7 @@ npm run dev                  # http://localhost:3000
 ## Deploy to Vercel
 
 1. Import the GitHub repo in Vercel and set **Root Directory** to `frontend`.
-2. Add every variable from `.env.example` under **Settings → Environment Variables**. `N8N_BASE_URL` must be your public n8n URL, such as `https://lakindu-n8n.onrender.com`, not localhost.
+2. Add every variable from `.env.example` under **Settings → Environment Variables**. `N8N_BASE_URL` must be your public n8n URL, such as `https://your-n8n.example.com`, not localhost.
 3. Deploy.
 
 ## Dev check

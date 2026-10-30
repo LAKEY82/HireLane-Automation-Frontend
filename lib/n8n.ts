@@ -1,5 +1,6 @@
 // Server-only n8n client: the public REST API (workflow, executions, credentials)
 // and the secured "qa-admin/*" webhooks in the QA Intern Applications workflow.
+import "server-only";
 import { connection } from "next/server";
 
 export type N8nNode = {

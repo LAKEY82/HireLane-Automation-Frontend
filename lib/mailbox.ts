@@ -1,5 +1,6 @@
 // Connects a mailbox to the workflow: stores the login in n8n and switches the workflow to it.
 // Used both by sign-in (Google / Hostinger) and by Settings → Email account.
+import "server-only";
 import tls from "node:tls";
 import { getWorkflow, listCampaigns, listCredentials, saveWorkflow, testCredential, upsertCredential } from "./n8n";
 import { HOSTINGER_DEFAULTS, applySettings, readSettings } from "./settings";

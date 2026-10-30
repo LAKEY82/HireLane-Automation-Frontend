@@ -1,3 +1,4 @@
+import "server-only";
 import { createHash, timingSafeEqual } from "node:crypto";
 
 // Sign-in rules shared by the Auth.js providers (auth.ts). Sessions themselves are Auth.js JWTs.
