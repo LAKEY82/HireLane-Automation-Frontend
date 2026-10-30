@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Hirelane brand: one violet accent on calm slate neutrals */
+@theme {
+  --color-brand-50: #f4f2ff;
+  --color-brand-100: #ebe7ff;
+  --color-brand-200: #d7cfff;
+  --color-brand-300: #b8a9ff;
+  --color-brand-400: #957aff;
+  --color-brand-500: #7752f8;
+  --color-brand-600: #6436ed;
+  --color-brand-700: #5428d2;
+  --color-brand-800: #4523aa;
+  --color-brand-900: #3a2188;
+  --color-brand-950: #22125b;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: #f7f7fb;
+  color: #0f172a;
+}
+
+::selection {
+  background: var(--color-brand-200);
+}
