@@ -1,10 +1,10 @@
 // Auth.js (NextAuth v5): Google, Microsoft, Hostinger email and the backup admin password.
-// Signing in with Google or Hostinger also makes that mailbox the workflow's inbox.
+// Signing in with Google also makes that mailbox the workflow's inbox; Hostinger sign-in only checks the password.
 import NextAuth, { CredentialsSignin, type NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id";
-import { connectGmail, connectHostinger, MailboxError, verifyImapLogin } from "@/lib/mailbox";
+import { connectGmail, MailboxError, verifyImapLogin } from "@/lib/mailbox";
 import { HOSTINGER_DEFAULTS } from "@/lib/settings";
 import { clearFailures, isAllowedEmail, isCorrectPassword, isLockedOut, recordFailure } from "@/lib/session";
 
@@ -52,13 +52,8 @@ const providers: NextAuthConfig["providers"] = [
         throw new SignInFailed("wrong_password");
       }
       clearFailures(keys[0]);
-
-      try {
-        await connectHostinger(email, password, HOSTINGER_DEFAULTS.imapHost, HOSTINGER_DEFAULTS.smtpHost);
-      } catch (e) {
-        console.error("Connecting Hostinger mailbox:", e);
-        throw new SignInFailed("connect_failed");
-      }
+      // Sign-in only checks the password: connecting the mailbox to n8n (Settings → Email account)
+      // can take longer than a hosted function may run (Netlify: 10 s), especially while n8n wakes up
       return { id: email, email, name: email };
     },
   }),

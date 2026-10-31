@@ -1,5 +1,5 @@
 // Connects a mailbox to the workflow: stores the login in n8n and switches the workflow to it.
-// Used both by sign-in (Google / Hostinger) and by Settings → Email account.
+// Used by Google sign-in and by Settings → Email account.
 import "server-only";
 import tls from "node:tls";
 import { getWorkflow, listCampaigns, listCredentials, saveWorkflow, testCredential, upsertCredential } from "./n8n";
@@ -22,7 +22,7 @@ export function verifyImapLogin(host: string, user: string, password: string): P
       if (error) reject(error);
       else resolve();
     };
-    const socket = tls.connect({ host, port: HOSTINGER_DEFAULTS.imapPort, servername: host, timeout: 15_000 });
+    const socket = tls.connect({ host, port: HOSTINGER_DEFAULTS.imapPort, servername: host, timeout: 8_000 });
     socket.setEncoding("utf8");
     socket.on("data", (chunk: string) => {
       buffer += chunk;
